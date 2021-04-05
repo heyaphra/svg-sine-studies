@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Sine Studies</title>
+    <style>
+        :root {
+            --x-spacing: 10;
+            --node-radius: 5px;
+            --num-nodes: 12;
+            --viewbox-width: calc(var(--node-radius) * var(--num-nodes) * var(var(--x-spacing)));
+            --viewbox-height: calc(var(--node-radius) * var(--num-nodes) * var(var(--x-spacing)));
+            --viewbox-midline: calc(var(--viewbox-height) / 2);
+        }
+        body {
+            font: 18px/1.6 "Roboto", sans-serif;
+            background: #f2f2f2;
+            color: #3a3a3a;           
+            padding: 20px 40px;
+        }
+        svg {
+            display: inline-block;
+            border: 1px solid;
+            fill: #49b293;
+            width: var(--viewbox-width);
+            height: var(--viewbox-height);
+        }
+    
+    </style>
+  </head>
+  <body>
+    <svg class="V">
+      <circle class="C" cx="10" cy="50" r="5"><circle>
+    </svg>
+    <script>     
+        class Node {
+            constructor(shape, container) {
+                /**   
+                 *    shape = {
+                 *        ref: DOMElement,
+                 *        attrs: { cx, cy, r, etc...  }
+                 *    }
+                 * 
+                 *    container = { 
+                 *         ref: DOMElement, 
+                 *         attrs: computedStyle 
+                 *    }
+                 * */
+
+                // 1. use createElement to make SVG circle
+                // 2. Set element attributes with data from constructor
+                // 3. container.ref.appendChild(circle)
+            }
+
+            moveTo(x, y) {
+                // thix.shape.attrs.cx = numToPx(x);
+                // thix.shape.attrs.cy = numToPx(y);
+                // this.ref.setAttribute("cx", numToPx(x));
+                // this.ref.setAttribute("cy", numToPx(y));
+            }
+        }
+
+        function pxToNum(px) {
+            return +px.split("px")[0];
+        }
+
+        const viewbox = document.querySelector(".V");
+        const circle = document.querySelector(".C");
+        const { width, height } = getComputedStyle(viewbox);
+        circle.setAttribute("cy", `${pxToNum(height) / 2}px`);
+
+    </script>
+  </body>
+</html>
